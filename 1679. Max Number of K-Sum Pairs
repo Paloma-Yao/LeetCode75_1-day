@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        unordered_map<int ,int> freq;
+        int count = 0;
+        for(int num:nums){
+            freq[num]++;
+        }
+        int complement;
+        for(auto& [num,cnt]:freq){
+            complement = k -num;
+            if(freq.find(complement) != freq.end()){
+                if(num == complement){
+                    count +=cnt/2;
+                }else{
+                    count +=min(cnt,freq[complement]);
+                }
+                freq[complement] = 0;
+                freq[num] = 0;
+            }
+        }
+        return count;
+    }
+};

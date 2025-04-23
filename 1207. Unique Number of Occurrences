@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        unordered_map<int,int> countMap;
+        for(int num:arr){
+            countMap[num]++;
+        }
+        unordered_set<int> countSet;
+        for(auto& pair : countMap){
+            if(countSet.count(pair.second)){
+                return false;
+            }
+            countSet.insert(pair.second);
+        }
+        return true;
+    }
+};

@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+        if(word1.size()!= word2.size()){
+            return false;
+        }
+        unordered_map<char,int> fst,snd;
+        for(char a:word1){
+            fst[a]++;
+        }
+        for(char b:word2){
+            snd[b]++;
+        }
+        if(fst.size()!=snd.size())return false;
+
+        vector<int> k1,k2;
+        for(const auto&pair : fst){
+            if(!snd.count(pair.first))return false;
+        }
+        for(const auto&pair :fst){
+            k1.push_back(pair.second);
+        }
+        for(const auto&pair :snd){
+            k2.push_back(pair.second);
+        }
+        sort(k1.begin(),k1.end());
+        sort(k2.begin(),k2.end());
+        return k1==k2;
+    }
+};

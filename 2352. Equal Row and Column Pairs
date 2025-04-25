@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int equalPairs(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int result =0;
+        unordered_map<string,int> row_n;
+        for(const auto& row:grid){
+            string s;
+            for(int num : row){
+                s +=to_string(num)+',';
+            }
+            if(!s.empty()){
+                s.pop_back();
+            }
+            row_n[s]++;
+        }
+        for(int i = 0;i<n; ++i){
+            string c;
+            for(int j = 0; j<n ;++j){
+                c += to_string(grid[j][i])+',';
+            }
+            if(!c.empty()){
+                c.pop_back();
+            }
+            result += row_n[c];
+        }
+        return result;
+    }
+};
+
+    

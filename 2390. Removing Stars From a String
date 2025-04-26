@@ -1,0 +1,14 @@
+class Solution {
+public:
+    string removeStars(string s) {
+        string rst;
+        for(char c:s){
+            if(c!= '*'){
+                rst.push_back(c);
+            }else{
+                rst.pop_back();
+            }
+        }
+        return rst;
+    }
+};

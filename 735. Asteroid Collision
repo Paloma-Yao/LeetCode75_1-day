@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        stack<int> rst;
+        for(int a : asteroids){
+            bool alive = 1;
+            while(!rst.empty() &&  rst.top() > 0 && a <0){
+                if(-a>rst.top()){
+                    rst.pop();
+
+                }else if(-a == rst.top()){
+                    rst.pop();
+                    alive = 0;
+                    break;
+                }else{
+                    alive = 0;
+                    break;
+                }
+            }
+            if(alive == 1){
+                rst.push(a);
+            }         
+        }
+        vector<int> result(rst.size());
+         for (int i = rst.size() - 1; i >= 0; --i) {
+            result[i] = rst.top();
+            rst.pop();
+        }
+        return result;
+    }
+};
